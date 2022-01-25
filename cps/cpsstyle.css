@@ -4,13 +4,13 @@
     width:960px;
 } */
 
-html{
+body{
     background-image: url('mouse.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
-body{
+#body-div{
     padding: 25px;
     background-color: white;
     color: black;
@@ -21,7 +21,7 @@ body{
 .dark-mode {
     background-image: url('mouse-modified.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     background-color: black;
     color: white;
     border: 3px solid white;
