@@ -12,13 +12,17 @@
             <h4>1/20/22</h4>
             <hr>
             <p>
-                As soon as you click this button, a timer will start and you will then have to click
+                As soon as you click start, a timer will start and you will then have to click
                 as fast as you can to get the best possible score in 5 seconds
             </p>
-            <button id="clicks" type="button" onclick="count()" class="rbutton">Click Me!</button>
+            <p><button id="startb" onclick="start()">Start</button></p>
+            <button id="clicksb" type="button" onclick="count()" class="rbutton" disabled=true>Click Me!</button>
             <p id="countdown">
-                <b>Timer: </b>
+                <b>Timer: 5</b>
                 <br>
+            </p>
+            <p id="ccount">
+                <b>CPS: 0</b>
             </p>
             <p>
                 <button type="button" style="width: 50px; height: 50px; " onclick="DM()">Dark Mode</button>
@@ -27,28 +31,33 @@
             </p>
             <script>
 
-                const startSec = 5;
-                let time = 1 * startSec;
+                const startMin = 0;
+                let time = 60 * startMin;
                 const countdownEl = document.getElementById('countdown');
-                function timer(){
-                    if(time > -1){
-                    const seconds = Math.floor(time);
-                    countdownEl.innerHTML = ('Timer: ' + seconds).bold();              
-                    time--;}
+                function start(){
+                    document.getElementById("startb").disabled = true; 
+                    document.getElementById("clicksb").disabled = false; 
+                    setInterval(start, 1000);
 
-                    else{
-                        countdownEl.innerHTML = 'Timer: ' + seconds;              
-                    }
-                }            
+                    const min = Math.floor(time / 60);
+                    let seconds = 5;
 
+                    countdownEl.innerHTML('Timer: ' + seconds);
+                    time--;
+
+                    
+                }
+
+
+                const cspEl = document.getElementById('ccount');
                 var clicks = 0;
                 function count(){
-                    setInterval(timer, 1000);
-                    timer();
                     clicks += 1;
-                    document.getElementById('clicks').innerHTML = clicks;
+                    document.getElementById('clicksb').innerHTML = clicks;
 
-                }  
+                    cspEl.innerHTML = ('CPS: ' + (clicks / 5));
+                }
+
 
                 function DM() {
                     var element = document.body;
@@ -62,18 +71,10 @@
 
 <!-- TO DO 
 
-    X TIMER 
-    COUNT CLICKS
+    TIMER 
+    X COUNT CLICKS
     STOP WHEN TIMER ENDS
     X DARK MODE
-    INVERT BACKGROUND COLOR 
-    DELETE START BUTTON
-    CREATE NEW BUTTON FIR COUNTING 
-
--->
-
-<!-- NOTES
-
-    MIGHT HAVE TO HAVE START BUTTON ABOVE ACTUAL BUTTON THAT GOES AWAY WHEN CLICKED (CONFIMRED)
+    CALCULATE CPS
 
 -->
